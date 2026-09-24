@@ -1,7 +1,9 @@
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 public class Practice {
@@ -184,12 +186,17 @@ public class Practice {
      * @return the sum of the nodes at the given level
      */
     public static int sumAtLevel(BinaryTreeNode<Integer> root, int level) {
-        int sum = 0;
 
         if(root == null){
-            return 0;
+            return 1;
         }
-        return sum;
+
+        if(level == 1){
+            return root.data;
+        }
+
+        return sumAtLevel(root.left, level - 1) +
+        sumAtLevel(root.right, level - 1);
     }
 
 
@@ -204,6 +211,33 @@ public class Practice {
      * @return true if the sums are equal, false otherwise
      */
     public static boolean sumMatch(BinaryTreeNode<Integer> root, ListNode<Integer> head) {
-        return false;
+        return treeSum(root) == listSum(head);
+    }
+
+    private static int treeSum(BinaryTreeNode<Integer> root){
+        if(root == null){
+            return 0;
+        }
+
+        return root.data + 
+        treeSum(root.left) +
+        treeSum(root.right);
+    }
+
+    private static int listSum(ListNode<Integer> head){
+        if(head == null){
+            return 0;
+        }
+
+        int sum = 0;
+        ListNode<Integer> current = head;
+
+        while(current != null){
+            sum += current.data;
+            current = current.next;
+
+        }
+
+        return sum;
     }
 }
