@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,7 +13,17 @@ public class Practice {
      * @return the sum of the odd numbers in the array
      */
     public static int oddSum(int[] nums) {
-        return 0;
+        int sum = 0;
+        if(nums == null){
+            return 0;
+        }
+        for(int i = 0; i < nums.length; i++){
+            if(nums[i] % 2 != 0){
+                sum += nums[i];
+            }
+        }
+
+        return sum;
     }
 
     /**
@@ -40,7 +51,19 @@ public class Practice {
      * @throws NullPointerException if ages is null
      */
     public static Set<String> adults(Map<String, Integer> ages) {
-        return null;
+        if(ages == null){
+            throw new NullPointerException();
+        }
+        Set<String> names = new HashSet<>();
+
+        for (Map.Entry<String, Integer> entry : ages.entrySet()){
+    
+                if(entry.getValue() >= 18){
+                    names.add(entry.getKey());
+                }
+            }
+        return names;
+
     }
 
     /**
@@ -51,7 +74,20 @@ public class Practice {
      * @throws IllegalArgumentException if head is null
      */
     public static int biggestNumber(ListNode<Integer> head) {
-        return 0;
+        if(head == null){
+            throw new IllegalArgumentException();
+        }
+
+        ListNode<Integer> current = head;
+        int max = head.data;
+
+        while(current != null){
+            if(current.data > max){
+                max = current.data;
+            }
+            current = current.next;
+        }
+        return max;
     }
 
     /**
