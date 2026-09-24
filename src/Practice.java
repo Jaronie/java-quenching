@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -37,9 +38,29 @@ public class Practice {
      * @throws IllegalArgumentException if words is empty
      * @throws NullPointerException if words is null
      */
-    public static String shortestWord(Set<String> words) {
-        return null;
-    }
+     public static String shortestWord(Set<String> words) {
+
+
+       if(words == null){
+       throw new NullPointerException();
+       }
+       else if(words.isEmpty()){
+       throw new IllegalArgumentException();
+       }
+       
+       String shortest = null;
+
+       for(String word : words){
+        if(shortest == null 
+            || word.length() < shortest.length() 
+            || (word.length() == shortest.length() && word.compareTo(shortest) < 0)){
+            
+            shortest = word;
+
+        }
+       }
+       return shortest;
+       }
 
     /**
      * Returns a set of all the names of people that are 18 years of age or older.
@@ -104,7 +125,20 @@ public class Practice {
      * @return a frequency map of values in the list
      */
     public static <T> Map<T, Integer> frequencies(ListNode<T> head) {
-        return null;
+        HashMap<T, Integer> mapFreq = new HashMap<>();
+
+        if(head == null){
+            return mapFreq;
+        }
+        ListNode<T> current = head;
+
+        while(current != null){
+            mapFreq.put(current.data, 
+                mapFreq.getOrDefault(current.data, 0) + 1);
+
+                current = current.next;
+        }
+        return mapFreq;
     }
 
 
@@ -117,7 +151,12 @@ public class Practice {
      * @return the number of levels in the tree
      */
     public static int levelCount(BinaryTreeNode<?> root) {
-        return 0;
+        if(root == null){
+            return 0;
+        }
+
+        return 1 + Math.max(levelCount(root.left), levelCount(root.right));
+
     }
 
 
@@ -145,7 +184,12 @@ public class Practice {
      * @return the sum of the nodes at the given level
      */
     public static int sumAtLevel(BinaryTreeNode<Integer> root, int level) {
-        return 0;
+        int sum = 0;
+
+        if(root == null){
+            return 0;
+        }
+        return sum;
     }
 
 
